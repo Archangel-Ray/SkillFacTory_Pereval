@@ -26,7 +26,7 @@ class LevelSerializer(serializers.ModelSerializer):
 class ImagesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Images
-        fields = "__all__"
+        fields = ['data', 'title']
 
 
 class SpecificationOfPerevalSerializer(WritableNestedModelSerializer):
