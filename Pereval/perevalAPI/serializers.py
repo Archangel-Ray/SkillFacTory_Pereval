@@ -30,6 +30,16 @@ class ImagesSerializer(serializers.ModelSerializer):
 
 
 class SpecificationOfPerevalSerializer(WritableNestedModelSerializer):
+    """
+    Олегу Афанасьеву выписать премию! за drf_writable_nested
+    и за то, что он разруливает все косяки СкиллФакТори
+    """
+    user = UserSerializer()
+    coords = CoordinatesSerializer()
+    level = LevelSerializer()
+    images = ImagesSerializer()
+
     class Meta:
         model = SpecificationOfPereval
-        fields = "__all__"
+        fields = ['beauty_title', 'title', 'other_titles', 'connect', 'add_time',
+                  'user', 'coords', 'status', 'level', 'images']
