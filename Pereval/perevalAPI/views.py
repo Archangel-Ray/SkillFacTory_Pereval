@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 
-from Pereval import settings
 from .models import (
+    User,
     Coordinates,
     Level,
     Images,
@@ -18,7 +18,7 @@ from .serializers import (
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = settings.AUTH_USER_MODEL.objects.all()
+    queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
