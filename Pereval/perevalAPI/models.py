@@ -66,11 +66,12 @@ class SpecificationOfPereval(models.Model):
 
 
 class Images(models.Model):
-    data = models.URLField(max_length=1500, verbose_name='Cсылка на вид')
-    title = models.TextField(verbose_name='Описание вида')
+    data = models.URLField(max_length=1500, blank=True, verbose_name='Cсылка на вид')
+    title = models.TextField(blank=True, verbose_name='Описание вида')
     pereval = models.ForeignKey(
         SpecificationOfPereval,
         on_delete=models.CASCADE,
+        blank=True,
         verbose_name='Вид перевала',
         # на сколько я понял, это имя нужно для сериализатора,
         # он будет собирать список в этом поле и номеру перевала
