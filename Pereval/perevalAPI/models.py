@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-from Pereval.Pereval import settings
+from Pereval import settings
 
 
 class User(AbstractUser):
