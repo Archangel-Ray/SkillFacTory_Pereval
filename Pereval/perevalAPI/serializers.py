@@ -2,12 +2,12 @@ from drf_writable_nested import WritableNestedModelSerializer
 from rest_framework import serializers
 
 from Pereval import settings
-from .models import SpecificationOfPereval, Coordinates, Level, Images
+from .models import User, SpecificationOfPereval, Coordinates, Level, Images
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = settings.AUTH_USER_MODEL
+        model = User
         fields = "__all__"
 
 
