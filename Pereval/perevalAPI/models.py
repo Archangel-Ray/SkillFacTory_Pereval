@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+from Pereval.Pereval import settings
+
 
 class User(AbstractUser):
     email = models.EmailField(max_length=200)
@@ -37,3 +39,27 @@ class Level(models.Model):
     summer = models.CharField(max_length=3, choices=LEVEL_CHOICES, default=difficulty_1, verbose_name='Лето')
     autumn = models.CharField(max_length=3, choices=LEVEL_CHOICES, default=difficulty_1, verbose_name='Осень')
     winter = models.CharField(max_length=3, choices=LEVEL_CHOICES, default=difficulty_1, verbose_name='Зима')
+
+
+class SpecificationOfPereval(models.Model):
+    new = 'new'
+    pending = 'pnd'
+    accepted = 'acp'
+    rejected = 'rjt'
+
+    STATUSES = [
+        (new, 'Новое описание'),
+        (pending, 'На рассмотрении'),
+        (accepted, 'Подтверждено'),
+        (rejected, 'Отклонено'),
+    ]
+
+    beauty_title = models.CharField(max_length=50, blank=True)
+    title = models.CharField(max_length=50, blank=True)
+    other_titles = models.CharField(max_length=128, blank=True)
+    connect = models.CharField(max_length=128, blank=True)
+    add_time = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    coords = models.OneToOneField(Coordinates, on_delete=models.CASCADE)
+    status = models.CharField(max_length=3, choices=STATUSES, default='new')
+    level = models.ForeignKey(Level, on_delete=models.CASCADE)
