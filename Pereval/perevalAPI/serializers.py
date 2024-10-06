@@ -8,7 +8,7 @@ from .models import User, SpecificationOfPereval, Coordinates, Level, Images
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = "__all__"
+        fields = ['email', 'fam', 'name', 'otc', 'phone']
 
 
 class CoordinatesSerializer(serializers.ModelSerializer):
