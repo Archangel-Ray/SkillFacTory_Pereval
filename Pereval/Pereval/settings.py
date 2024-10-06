@@ -51,6 +51,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Pereval.urls'
 
+AUTH_USER_MODEL = 'perevalAPI.User'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
