@@ -37,7 +37,7 @@ class SpecificationOfPerevalSerializer(WritableNestedModelSerializer):
     user = UserSerializer()
     coords = CoordinatesSerializer()
     level = LevelSerializer()
-    images = ImagesSerializer()
+    images = ImagesSerializer(many=True)
 
     class Meta:
         model = SpecificationOfPereval
