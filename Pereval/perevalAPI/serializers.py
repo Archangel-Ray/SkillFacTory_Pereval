@@ -60,3 +60,20 @@ class SpecificationOfPerevalSerializer(WritableNestedModelSerializer):
         model = SpecificationOfPereval
         fields = ['beauty_title', 'title', 'other_titles', 'connect', 'add_time',
                   'user', 'coords', 'status', 'level', 'images']
+
+    def validate(self, data):
+        if self.instance is not None:
+            instance_user = self.instance.user
+            data_user = data.get('user')
+            validating_user_fields = [
+                instance_user.name != data_user['name'],
+                instance_user.fam != data_user['fam'],
+                instance_user.otc != data_user['otc'],
+                instance_user.phone != data_user['phone'],
+                instance_user.email != data_user['email'],
+
+            ]
+
+            if data_user is not None and any(validating_user_fields):
+                raise serializers.ValidationError({'Отклонено': 'данные пользователя менять нельзя'})
+        return data
