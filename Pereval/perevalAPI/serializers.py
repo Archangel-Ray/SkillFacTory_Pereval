@@ -60,6 +60,7 @@ class SpecificationOfPerevalSerializer(WritableNestedModelSerializer):
         model = SpecificationOfPereval
         fields = ['beauty_title', 'title', 'other_titles', 'connect', 'add_time',
                   'user', 'coords', 'status', 'level', 'images']
+        read_only_fields = ['status', 'add_time']
 
     def validate(self, data):
         if self.instance is not None:
