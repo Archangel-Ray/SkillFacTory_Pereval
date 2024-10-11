@@ -41,6 +41,7 @@ class ImagesViewSet(viewsets.ModelViewSet):
 class SpecificationOfPerevalViewSet(viewsets.ModelViewSet):
     queryset = SpecificationOfPereval.objects.all()
     serializer_class = SpecificationOfPerevalSerializer
+    filterset_fields = ['user__email']
 
     def partial_update(self, request, *args, **kwargs):
         pereval = self.get_object()
