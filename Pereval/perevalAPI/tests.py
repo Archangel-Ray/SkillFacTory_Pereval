@@ -1,6 +1,10 @@
+from django.urls import reverse
+from rest_framework import status
+
 from rest_framework.test import APITestCase
 
 from perevalAPI.models import SpecificationOfPereval, User, Coordinates, Level, Images
+from perevalAPI.serializers import SpecificationOfPerevalSerializer
 
 
 class PerevalAPITestCase(APITestCase):
@@ -35,3 +39,11 @@ class PerevalAPITestCase(APITestCase):
             title='Описание',
             pereval=self.pereval
         )
+
+    def test_get_list(self):
+        url = f'{reverse("specificationofpereval-list")}?get_all=true'
+        response = self.client.get(url)
+        serializer_data = SpecificationOfPerevalSerializer(self.pereval).data
+        self.assertEqual(serializer_data, response.data)
+        self.assertEqual(len(serializer_data), 2)
+        self.assertEqual(status.HTTP_200_OK, response.status_code)
