@@ -80,3 +80,10 @@ class PerevalAPITestCase(APITestCase):
         self.assertEqual(serializer_data, response.data)
         self.assertEqual(len(serializer_data), 2)
         self.assertEqual(status.HTTP_200_OK, response.status_code)
+
+    def test_get_detail(self):
+        url = reverse('specificationofpereval-detail', args=(self.pereval1.id,))
+        response = self.client.get(url)
+        serializer_data = SpecificationOfPerevalSerializer(self.pereval1).data
+        self.assertEqual(serializer_data, response.data)
+        self.assertEqual(status.HTTP_200_OK, response.status_code)
